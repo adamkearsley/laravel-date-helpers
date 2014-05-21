@@ -20,12 +20,13 @@ function yesterday($format=null)
 	return Carbon::yesterday()->format($format);
 }
 
-function nextDay($datetime=null, $day)
+function nextDay($datetime=null, $day, $format=null)
 {
 	$day = strtoupper($day);
+	$format = $format ? $format:'Y-m-d H:i:s';
 	$datetime = $datetime ? $datetime:Carbon::now();
 	$days = ['SUNDAY' => Carbon::SUNDAY, 'MONDAY' => Carbon::MONDAY, 'TUESDAY' => Carbon::TUESDAY, 'WEDNESDAY' => Carbon::WEDNESDAY, 'THURSDAY' => Carbon::THURSDAY, 'FRIDAY' => Carbon::FRIDAY, 'SATURDAY' => Carbon::SATURDAY];
-	return Carbon::createFromFormat('Y-m-d H:i:s', $datetime)->next($days[$day]);
+	return Carbon::createFromFormat('Y-m-d H:i:s', $datetime)->next($days[$day])->format($format);
 }
 
 function dayOfWeek($datetime=null)
